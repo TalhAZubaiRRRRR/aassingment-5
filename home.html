@@ -30,11 +30,11 @@
 
 <body>
 
-   
-    
+
+
 
     <!-- //navbar -->
-    <nav class="flex justify-between items-center bg-base-200 p-3 max-w-[1600px] mx-auto shadow mb-[60px] ">
+    <nav class="flex flex-col md:flex-row justify-between items-center bg-base-200 p-3 max-w-[1600px] mx-auto shadow mb-[60px] gap-3">
 
         <!-- Logo + Title -->
         <div class="flex items-center gap-2 ">
@@ -86,7 +86,7 @@
 
                 <div>
                     <h2 id="issueCount" class="font-semibold">
-                        
+
                     </h2>
 
                     <p class="text-sm text-gray-500">
@@ -97,11 +97,13 @@
             </div>
 
 
-            <div class="flex gap-4 text-sm text-center mt-[15px]">
+            <div class="flex gap-2 text-sm text-center mt-[15px]">
 
-                <span class="text-green-600">● Open</span>
+                <span class="bg-green-600 rounded-full h-5 w-5 "></span>
+                <p>Open</p>
 
-                <span class="text-purple-600">● Closed</span>
+                <span class="bg-purple-600 rounded-full h-5 w-5"></span>
+                <p> Closed</p>
 
             </div>
 
@@ -115,13 +117,50 @@
             <span class="loading loading-dots loading-xl"></span>
         </div>
 
+
+        <!-- Open the modal using ID.showModal() method -->
+        
+        <dialog id="issue-modal" class="modal">
+            <div class="modal-box">
+
+                <h3 id="modalTitle" class="text-xl font-bold mb-2"></h3>
+
+                <div class="flex gap-2 ">
+                    <span id="modalStatus" class="badge"></span>
+                    <p id="modalAuthor"></p>
+                    <p id="modalDate"></p>
+                </div>
+
+                <div class="flex gap-2 mb-3" id="modalLabels"></div>
+
+                <p id="modalDescription" class="text-gray-600 mb-4"></p>
+
+                <div class="flex justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500">Assignee</p>
+                        <p id="modalAssignee" class="font-semibold"></p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm text-gray-500">Priority</p>
+                        <span id="modalPriority" class=" rounded-full text-sm"></span>
+                    </div>
+                </div>
+
+                <div class="modal-action">
+                    <form method="dialog">
+                        <button class="btn btn-primary">Close</button>
+                    </form>
+                </div>
+
+            </div>
+        </dialog>
+
+
     </section>
 
 
 
     <script src="home.js"></script>
 </body>
-
-</html>
-<img src="" alt="">
 

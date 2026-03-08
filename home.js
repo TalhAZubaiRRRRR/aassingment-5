@@ -12,6 +12,21 @@ const closedBtn = document.getElementById("closedBtn")
 
 const loadSpin = document.getElementById("loading-spinner")
 
+const issueModal = document.getElementById("issue-modal")
+
+const modalTitle = document.getElementById("modalTitle")
+const modalStatus =document.getElementById("modalStatus")
+const modalAuthor = document.getElementById("modalAuthor")
+const modalDate = document.getElementById("modalDate")
+const modalLabels=document.getElementById("modalLabels")
+const modalDescription = document.getElementById("modalDescription")
+const modalAssignee = document.getElementById("modalAssignee")
+const modalPriority = document.getElementById("modalPriority")
+
+
+
+
+
 
 
 
@@ -104,17 +119,18 @@ function disIssues(issues) {
 
 
 
-        div.className = `bg-white rounded shadow p-4 border-t-4 ${borderColor}`
+        div.className = `bg-white rounded shadow p-4 border-t-4 shadow-md ${borderColor}`
         div.innerHTML = `
         
-        <div class= "flex justify-between mb-4">
+        <div class="" onclick="openModal(${issue.id})">
+            <div class= "flex justify-between mb-4">
 
             <img src="${icon}" class="h-6 w-6" alt="">
 
             <p class="rounded-xl border text-sm text-center w-[80px] h-6 ${pri}">${issue.priority.toUpperCase()}</p>
         </div>
         
-        <h3 class="font-semibold">${issue.title}</h3>
+        <h3 class="font-semibold" onclick="openModal(${issue.id})">${issue.title}</h3>
 
         <p class="text-sm text-gray-500 mt-2 mb-4">${issue.description}</p>
 
@@ -128,6 +144,7 @@ function disIssues(issues) {
         <p class="text-sm mt-2 mb-2">${issue.createdAt} </p>
 
 
+        </div>
 
         `
         container.appendChild(div)
@@ -214,4 +231,79 @@ async function searchIssue(){
 }
 
 
+async function openModal(issueId){
+    const res =await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`)
 
+
+
+
+
+
+    
+
+    const data =await res.json()
+    const issueDetail = data.data
+    console.log(issueDetail)
+    console.log(data,"data")
+    issueModal.showModal()
+    modalTitle.innerText = issueDetail.title;
+    
+    modalAuthor.innerText = " . Open by " + issueDetail.author
+    modalDate.innerText = ". " + issueDetail.updatedAt
+    modalDescription.innerText = issueDetail.description
+    modalAssignee.innerText = issueDetail.assignee
+    
+
+    
+
+
+    let pri = issueDetail.priority === "high"
+    ? "text-red-500 bg-red-200"
+    : issueDetail.priority === "medium"
+    ? "text-yellow-500 bg-yellow-200"
+    : "text-green-500 bg-green-200";
+
+
+    let statusC = issueDetail.status === "open"
+    ? "bg-green-500 text-white"
+    : "bg-purple-500 text-white"
+
+    modalStatus.className = `text-sm mb-2 px-3 py-1 rounded-full ${statusC}`
+
+    modalStatus.innerText = issueDetail.status
+    modalPriority.className = `rounded-xl p-1 text-center text-[11px] ${pri}`
+    modalPriority.innerText = issueDetail.priority.toUpperCase()
+
+
+
+modalLabels.innerHTML = ""
+
+issueDetail.labels.forEach(label => {
+
+    let labelColor = "bg-red-100 text-red-500 border-red-200"
+    let icon = ""
+
+    if(label === "bug"){
+        labelColor = "bg-red-100 text-red-500 border-red-200"
+        icon = '<i class="fa-solid fa-bug"></i>'
+    }
+    else if(label === "help wanted"){
+        labelColor = "bg-yellow-100 text-yellow-600 border-yellow-200"
+        icon = '<i class="fa-regular fa-life-ring"></i>'
+    }
+
+    const span = document.createElement("span")
+
+    span.className = `rounded-xl border text-xs px-2 py-1 flex items-center gap-1 mt-2 ${labelColor}`
+
+    span.innerHTML = `${icon} ${label.toUpperCase()}`
+
+    modalLabels.appendChild(span)
+
+})
+
+issueModal.showModal()
+
+    
+
+}
