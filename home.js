@@ -1,6 +1,6 @@
 
 let allIssues = [];
-let currentTab = []
+let currentTab = ""
 
 
 const container = document.getElementById("issuesContainer")
@@ -10,16 +10,15 @@ const allBtn = document.getElementById("allBtn")
 const openBtn = document.getElementById("openBtn")
 const closedBtn = document.getElementById("closedBtn")
 
+const loadSpin = document.getElementById("loading-spinner")
+
 async function loadIssues() {
-
-
+    showLoading()
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
-
     const data = await res.json()
-
+    hideLoading()
     allIssues = data.data
     // console.log(allIssues)
-
     disIssues(allIssues)
 
 
@@ -28,6 +27,16 @@ async function loadIssues() {
 
 loadIssues()
 
+
+function showLoading(){
+    loadSpin.classList.remove("hidden")
+    loadSpin.classList.add("flex")
+    container.innerHTML=""
+
+}
+function hideLoading(){
+    loadSpin.classList.add("hidden")
+}
 
 
 
