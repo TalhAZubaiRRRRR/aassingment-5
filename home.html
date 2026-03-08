@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tailwind + diasyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- font awesomr -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- style -->
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+    <title>GitHub Issues Tracker</title>
+</head>
+
+<body>
+
+    <p class="text-sm mt-2 mb-2">srah author</p>
+    
+
+    <!-- //navbar -->
+    <nav class="flex justify-between items-center bg-base-200 p-3 max-w-[1600px] mx-auto shadow mb-[60px] ">
+
+        <!-- Logo + Title -->
+        <div class="flex items-center gap-2 ">
+            <img src="./B13-A5-Github-Issue-Tracker/assets/github-logo.png" class="w-8">
+            <p class="text-lg font-semibold">GitHub Issues Tracker</p>
+        </div>
+
+        <!-- Search section -->
+        <div class="flex items-center gap-2">
+            <div class="relative w-64">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
+
+                <input id="searchInput" type="text" placeholder="Search issues..."
+                    class="w-full pl-10 pr-3 py-2 border rounded-sm">
+            </div>
+
+            <button onclick="searchIssue()" class="btn btn-primary">
+                Search
+            </button>
+        </div>
+
+    </nav>
+
+    <main>
+
+        <div class="bg-base-200 p-4 rounded shadow flex gap-3 w-11/12 mx-auto">
+
+            <button id="allBtn" onclick="showAll()" class="px-4 py-1 rounded btn btn-primary text-white w-[120px]">
+                All
+            </button>
+
+            <button id="openBtn" onclick="showOpen()" class="px-4 py-1 rounded border w-[120px]">
+                Open
+            </button>
+
+            <button id="closedBtn" onclick="showClosed()" class="px-4 py-1 rounded border w-[120px] ">
+                Closed
+            </button>
+
+        </div>
+    </main>
+
+
+    <section class="mx-auto w-11/12 bg-base-200 shadow">
+        <div class="bg-white mt-4 p-4 rounded shadow flex justify-between">
+
+            <div class="flex items-center gap-3">
+                <img src="./B13-A5-Github-Issue-Tracker/assets/Aperture.png" alt="">
+
+                <div>
+                    <h2 id="issueCount" class="font-semibold">
+                        
+                    </h2>
+
+                    <p class="text-sm text-gray-500">
+                        Track and manage your project issues
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="flex gap-4 text-sm text-center mt-[15px]">
+
+                <span class="text-green-600">● Open</span>
+
+                <span class="text-purple-600">● Closed</span>
+
+            </div>
+
+        </div>
+
+        <div id="issuesContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+
+        </div>
+
+    </section>
+
+
+
+    <script src="home.js"></script>
+</body>
+
+</html>
+<img src="" alt="">
+
