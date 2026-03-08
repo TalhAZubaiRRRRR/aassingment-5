@@ -12,6 +12,11 @@ const closedBtn = document.getElementById("closedBtn")
 
 const loadSpin = document.getElementById("loading-spinner")
 
+
+
+
+
+
 async function loadIssues() {
     showLoading()
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
@@ -26,6 +31,7 @@ async function loadIssues() {
 }
 
 loadIssues()
+
 
 
 function showLoading(){
@@ -45,7 +51,7 @@ function disIssues(issues) {
 
     count.innerHTML = issues.length + " Issues"
     issues.forEach(issue => {
-        console.log(issue)
+        // console.log(issue)
         const div = document.createElement("div")
         let borderColor = issue.status === "open"
             ? "border-green-600"
@@ -54,7 +60,7 @@ function disIssues(issues) {
         let icon = issue.status === "open"
             ? "./B13-A5-Github-Issue-Tracker/assets/open.png"
             : "./B13-A5-Github-Issue-Tracker/assets/closed.png"
-        console.log(icon)
+        // console.log(icon)
 
         let pri = issue.priority === "high"
             ? "text-red-500 bg-red-200"
@@ -181,4 +187,31 @@ activeBtn.classList.add("bg-blue-800","text-white")
 }
 
 // serch option
+
+async function searchIssue(){
+    
+    const text = document.getElementById("searchInput").value
+
+    
+    if(text === ""){
+        loadIssues();
+        return
+    }
+    
+    container.innerHTML=""
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`)
+    const data =await res.json()
+    disIssues(data.data)
+    
+
+    document.getElementById("searchInput").addEventListener("keypress",function(press){
+    if(press.key === "Enter"){
+        searchIssue()
+    }
+})
+
+
+}
+
+
 
