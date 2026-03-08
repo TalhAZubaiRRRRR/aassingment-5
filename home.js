@@ -128,3 +128,57 @@ function disIssues(issues) {
     })
 }
 
+
+function showAll(){
+    currentTab = ""
+    setActive(allBtn);
+
+    disIssues(allIssues)
+
+
+}
+
+function showOpen(){
+
+currentTab = "open"
+
+setActive(openBtn)
+
+const openIssues = allIssues.filter(issue => issue.status === "open")
+
+disIssues(openIssues)
+
+}
+
+
+function showClosed(){
+
+currentTab = "closed"
+
+setActive(closedBtn)
+
+const closedIssues = allIssues.filter(issue => issue.status === "closed")
+
+disIssues(closedIssues)
+
+}
+function setActive(activeBtn){
+
+const buttons = [allBtn, openBtn, closedBtn]
+
+buttons.forEach(btn => {
+
+btn.classList.remove("bg-blue-800","text-white")
+
+btn.classList.add("border")
+
+})
+
+activeBtn.classList.remove("border")
+
+activeBtn.classList.add("bg-blue-800","text-white")
+
+}
+
+// serch option
+
