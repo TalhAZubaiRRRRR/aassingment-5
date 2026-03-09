@@ -109,7 +109,7 @@ function disIssues(issues) {
 
             return `
                 <span class="rounded-xl border text-xs text-center px-2 py-0.5 flex items-center gap-1 ${labelColor}">
-                    ${icon} ${label}
+                    ${icon} ${label.toUpperCase()}
                 </span>
             `;
         }).join(""); // Join the array of strings into one single HTML string
