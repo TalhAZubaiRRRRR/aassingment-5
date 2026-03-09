@@ -73,8 +73,8 @@ function disIssues(issues) {
             : "border-purple-600"
 
         let icon = issue.status === "open"
-            ? "./B13-A5-Github-Issue-Tracker/assets/open.png"
-            : "./B13-A5-Github-Issue-Tracker/assets/closed.png"
+            ? "./assets/open.png"
+            : "./assets/closed.png"
         // console.log(icon)
 
         let pri = issue.priority === "high"
