@@ -27,3 +27,6 @@ Filter methord work like map and for each method but it requires a condition if 
 
 If we want to write a function we need write the function( )like this and use for varius thing varius way like give the peramiter in it and so on .But  in the arrow funtion we can do the same work in sorter time like in arrow function we use this in variable and give a ( ) and arrow and after if we have peramiter write the function word and if it is one line work it dosnt need wite retrun and it dont need the curly bracket{} like other function.
 
+## What are template literals?
+
+** Template literals are a way to write code in js with string in temlate literals we can access any variable name dynamic way in this method . And we can write multiple line without line brake.
